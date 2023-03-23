@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+<%- include("./partials/head") %>
+
+  <body id="body">
+    <%- include("./partials/header") %>
+
+      <main id="main">
+        <section>
+          <h1>Update product</h1>
+
+          <form class="login_form" method="POST" action="/all-products">
+            <label for="id">Product id: </label>
+            <input name="id" id="id" type="number" placeholder="<%= objproduct.id_product %>" />
+            <div id="id_error">Please fill up your id</div>
+
+            <label for="name">Product name: </label>
+            <input name="name" id="name" type="text" placeholder="<%= objproduct.name_product %>" />
+            <div id="name_error">Please fill up your name</div>
+
+            <label for="description">Product description:</label>
+            <input name="description" id="description" type="text" placeholder="<%= objproduct.description %>" />
+            <div id="desc_error">Please fill up your description</div>
+
+            <button class="create">update</button>
+          </form>
+        </section>
+      </main>
+
+      <%- include("./partials/footer") %>
+  </body>
+
+</html>

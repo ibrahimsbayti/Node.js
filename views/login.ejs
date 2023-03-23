@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+<%- include("./partials/head") %>
+
+  <body id="body">
+    <header class="myheader">
+      <h1>
+        All Products
+      </h1>
+
+      <nav>
+        <ul class="parent">
+
+          <li>
+            <h2><a href="/register">Register</a></h2>
+          </li>
+
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section>
+        <h1>Login Page</h1>
+
+        <form class="login_form" method="POST" action="/Login" name="form" onsubmit="return valid()">
+          <label for="id">User id: </label>
+          <input name="id" id="id" type="number" />
+          <div id="id_error">Please fill up your id</div>
+
+          <label for="email">User email: </label>
+          <input name="email" id="email" type="text" />
+          <div id="email_error">Please fill up your email</div>
+
+          <label for="password">User password:</label>
+          <input name="password" id="password" type="text" />
+          <div id="pass_error">Please fill up your password</div>
+
+          <label for="name_user">User name:</label>
+          <input name="name_user" id="name_user" type="text" />
+          <div id="name_user_error">Please fill up your name</div>
+
+          <button type="submit" class="create" id="login">Login</button>
+        </form>
+      </section>
+    </main>
+
+    <%- include("./partials/footer") %>
+
+      <script src="/app.js">
+
+        var id = document.forms['form']['id'];
+        var email = document.forms['form']['email'];
+        var password = document.forms['form']['password'];
+        var name_user = document.forms['form']['name_user'];
+
+        var id_error = document.getElementById('id_error');
+        var email_error = document.getElementById('email_error');
+        var password_error = document.getElementById('pass_error');
+        var name_user_error = document.getElementById('name_user_error');
+
+        function valid() {
+          arrUser.forEach(item => {
+            if (email.value == item.email && id.value == item.id && password.value == item.password
+              && name_user.value == item.name_user) {
+              return true;
+            } else { return false }
+          })
+
+          if (id.value == '' || null) {
+            id.style.border = '1px solid red';
+            id_error.style.display = 'block';
+            id.focus();
+            return false;
+          }
+
+          if (email.value == '' || null) {
+            email.style.border = '1px solid red';
+            email_error.style.display = 'block';
+            email.focus();
+            return false;
+          }
+
+          if (password.value == '' || null) {
+            password.style.border = '1px solid red';
+            password_error.style.display = 'block';
+            password.focus();
+            return false;
+          }
+          if (name_user.value == '' || null) {
+            name_user.style.border = '1px solid red';
+            name_user_error.style.display = 'block';
+            name_user.focus();
+            return false;
+          }
+        }
+      </script>
+
+  </body>
+
+</html>

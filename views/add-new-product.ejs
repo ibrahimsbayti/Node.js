@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+<%- include("./partials/head") %>
+
+  <body id="body">
+    <%- include("./partials/header") %>
+
+      <main id="main">
+        <section>
+          <h1>Create new product</h1>
+
+          <form class="login_form" method="POST" action="/all-products" name="formProduct"
+            onsubmit="return validateProduct()">
+            <label for="id_product">Product id: </label>
+            <input name="id_product" id="id_product" type="number" />
+            <div id="id_product_error">Please fill up your id</div>
+
+            <label for="name_product">Product name: </label>
+            <input name="name_product" id="name_product" type="text" />
+            <div id="name_product_error">Please fill up your name</div>
+
+            <label for="description">Product description:</label>
+            <input name="description" id="description" type="text" />
+            <div id="desc_product_error">Please fill up your description</div>
+
+            <button class="create">create</button>
+          </form>
+        </section>
+      </main>
+
+      <%- include("./partials/footer") %>
+        <script>
+          // Validation Code for Inputs
+
+          var name_product = document.forms['formProduct']['name_product'];
+          var id_product = document.forms['formProduct']['id_product'];
+          var description = document.forms['formProduct']['description'];
+
+          var id_product_error = document.getElementById('id_product_error');
+          var name_product_error = document.getElementById('name_product_error');
+          var desc_product_error = document.getElementById('desc_product_error');
+
+          function validateProduct() {
+            if (id_product.value == '' || null) {
+              id_product.style.border = '1px solid red';
+              id_product_error.style.display = 'block';
+              id_product.focus();
+              return false;
+            }
+            if (name_product.value == '' || null) {
+              name_product.style.border = '1px solid red';
+              name_product_error.style.display = 'block';
+              name_product.focus();
+              return false;
+            }
+            if (description.value == '' || null) {
+              description.style.border = '1px solid red';
+              desc_product_error.style.display = 'block';
+              description.focus();
+              return false;
+            }
+          }
+        </script>
+
+  </body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>
+    <%= mytitle %>
+  </title>
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <%- include("./partials/header") %>
+    <main>
+      <section>
+        <h1>Table Products</h1>
+        <table width="600" align="center">
+          <tr bgcolor="grey" align="center">
+            <th width="200">Id</th>
+            <th width="200">Name</th>
+            <th width="200">Description</th>
+          </tr>
+          <% arrProduct.forEach(item=>{ %>
+            <tr bgcolor="lightgrey" align="center">
+              <td width="200">
+                <%= item.id_product %>
+              </td>
+              <td width="200">
+                <%= item.name_product %>
+              </td>
+              <td width="200">
+                <%= item.description %>
+              </td>
+              <td width="200">
+                <button data-linkid="<%= item._id %>" class="delete">
+                  Delete Product
+                </button>
+              </td>
+              <td width="200">
+                <button data-id="<%= item._id %>" class="update">
+                  Update Product
+                </button>
+              </td>
+            </tr>
+            <% }); %>
+        </table>
+      </section>
+    </main>
+    <%- include("./partials/footer") %>
+      <script>
+        const btnElement = document.querySelector('.delete');
+        const productId = btnElement.getAttribute('data-linkid');
+
+        btnElement.addEventListener('click', (eo) => {
+          fetch(`/all-products/${productId}`, { method: 'DELETE' })
+            .then((response) => response.json())
+            .then((data) => (window.location.href = data.mylink))
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      </script>
+</body>
+
+</html>
